@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}{{ candidate.name or "Candidate" }}{% endblock %}
+{% block content %}
+    <a href="{{ url_for('candidates.list_candidates') }}">&larr; Back to candidates</a>
+
+    <h1>{{ candidate.name or "Unnamed Candidate" }}</h1>
+
+    <div class="detail-grid">
+        <div>
+            <h3>Contact</h3>
+            <p>Email: {{ candidate.email or "—" }}</p>
+            <p>Phone: {{ candidate.phone or "—" }}</p>
+            <p class="muted">Source file: {{ candidate.file_name }}</p>
+        </div>
+
+        <div>
+            <h3>Skills</h3>
+            {% if candidate.skills %}
+                {% for s in candidate.skills %}
+                    <span class="badge">{{ s.name }}</span>
+                {% endfor %}
+            {% else %}
+                <p class="muted">No skills detected.</p>
+            {% endif %}
+        </div>
+
+        <div>
+            <h3>Education</h3>
+            {% if candidate.education %}
+                <ul>
+                    {% for e in candidate.education %}
+                        <li>{{ e.raw_line }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="muted">No education entries detected.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <details class="raw-text">
+        <summary>View extracted raw text</summary>
+        <pre>{{ candidate.raw_text }}</pre>
+    </details>
+{% endblock %}

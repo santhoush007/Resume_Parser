@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Upload Resume{% endblock %}
+{% block content %}
+    <h1>Upload a Resume</h1>
+    <p class="muted">Accepted formats: PDF, DOCX (max 10 MB)</p>
+
+    <form method="POST" enctype="multipart/form-data" class="upload-form">
+        <input type="file" name="resume" accept=".pdf,.docx,.doc" required>
+        <button type="submit" class="btn">Parse Resume</button>
+    </form>
+{% endblock %}

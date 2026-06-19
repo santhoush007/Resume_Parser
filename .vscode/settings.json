@@ -1,0 +1,14 @@
+{
+    "cSpell.words": [
+        "dotenv",
+        "ILIKE",
+        "pdfplumber",
+        "psql",
+        "pytest",
+        "spacy",
+        "tsvector",
+        "venv",
+        "Werkzeug"
+    ],
+    "python-envs.defaultEnvManager": "ms-python.python:system"
+}

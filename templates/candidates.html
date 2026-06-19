@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Candidates{% endblock %}
+{% block content %}
+    <h1>Candidates</h1>
+
+    <form method="GET" class="search-form">
+        <input type="text" name="name" placeholder="Search by name" value="{{ name_filter }}">
+        <input type="text" name="skill" placeholder="Search by skill (e.g. python)" value="{{ skill_filter }}">
+        <button type="submit" class="btn">Search</button>
+    </form>
+
+    {% if candidates %}
+        <table class="candidate-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Skills</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for c in candidates %}
+                <tr>
+                    <td>{{ c.name or "—" }}</td>
+                    <td>{{ c.email or "—" }}</td>
+                    <td>{{ c.phone or "—" }}</td>
+                    <td>
+                        {% for s in c.skills[:6] %}
+                            <span class="badge">{{ s.name }}</span>
+                        {% endfor %}
+                        {% if c.skills|length > 6 %}
+                            <span class="badge muted">+{{ c.skills|length - 6 }} more</span>
+                        {% endif %}
+                    </td>
+                    <td><a href="{{ url_for('candidates.candidate_detail', candidate_id=c.id) }}">View</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="muted">No candidates found. Try uploading a resume first.</p>
+    {% endif %}
+{% endblock %}

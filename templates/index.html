@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Resume Parser - Home{% endblock %}
+{% block content %}
+    <section class="hero">
+        <h1>Automated Resume Parser</h1>
+        <p>
+            Upload resumes (PDF or Word) and automatically extract candidate
+            name, contact details, skills, and education into a searchable
+            database.
+        </p>
+        <div class="hero-actions">
+            <a class="btn" href="{{ url_for('upload.upload_resume') }}">Upload a Resume</a>
+            <a class="btn btn-secondary" href="{{ url_for('candidates.list_candidates') }}">Browse Candidates</a>
+        </div>
+    </section>
+{% endblock %}
