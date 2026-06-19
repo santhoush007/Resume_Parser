@@ -29,54 +29,6 @@ resume_parser/
 └── .env.example
 ```
 
-## Setup
-
-### 1. Clone / unzip and create a virtual environment
-
-```bash
-cd resume_parser
-python -m venv venv
-source venv/bin/activate      # Windows: venv\Scripts\activate
-pip install -r requirements.txt
-```
-
-### 2. Download the spaCy language model
-
-```bash
-python -m spacy download en_core_web_sm
-```
-
-> If this model isn't available, the parser still works — it falls back
-> to a simple heuristic for name detection instead of crashing.
-
-### 3. Create the PostgreSQL database
-
-```bash
-# in psql or any Postgres client
-CREATE DATABASE resume_parser;
-```
-
-### 4. Configure environment variables
-
-```bash
-cp .env.example .env
-# then edit .env with your actual DB credentials
-```
-
-### 5. Create the tables
-
-```bash
-python init_db.py
-```
-
-### 6. Run the app
-
-```bash
-python run.py
-```
-
-Visit **http://localhost:5000**
-
 ## Usage
 
 ### Web UI
